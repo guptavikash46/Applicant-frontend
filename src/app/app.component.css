@@ -1,0 +1,17 @@
+.custom-shadow:focus {
+    border-color: red;
+    box-shadow: none;
+    border-width: 1.7px;
+}
+.no-shadow:focus {
+    box-shadow: 0 0 0 0.2rem rgba(12, 226, 40, 0.801);
+}
+.border-for-alert{
+    /* border: 2px solid red; */
+    box-shadow: 0 0 0 0.2rem rgb(197, 11, 11);
+    background-color: rgb(230, 158, 148);
+}
+.list-group-item {
+    background-color: rgb(235, 110, 94);
+
+}

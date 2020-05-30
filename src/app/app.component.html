@@ -1,1 +1,89 @@
-<p>App component works</p>
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: darkgrey;">
+  <a class="navbar-brand" href="#">Hahn Softwareentwicklung herausforderung</a>
+</nav>
+<div class="container">
+  <div class="row mt-2">
+    <div class="col-sm-12 col-md-8 card">
+      <h3>Applicant Form</h3>
+      <form class="form-group" (ngSubmit)="onAddApplicant(f)" #f="ngForm">
+        <label for="name" class="font-weight-bold">Name:</label>
+        <div class="d-flex">
+          <input type="text" id="name" class="form-control" [ngClass]="nameVal.length < 6 ? 'custom-shadow': 'no-shadow'"
+            name="name" [(ngModel)]="nameVal" required>
+            <img *ngIf="nameVal.length > 5" height="40px" class="img-responsive" src="assets/done-green-24dp.svg">
+        </div>
+
+        <label for="familyName" class="font-weight-bold">Family name:</label>
+        <div class="d-flex">
+          <input type="text" id="familyName" class="form-control" [ngClass]="familyNameVal.length < 6 ? 'custom-shadow': 'no-shadow' " 
+          name="familyName" [(ngModel)]="familyNameVal" required>
+          <img *ngIf="familyNameVal.length > 5" height="40px" class="img-responsive" src="assets/done-green-24dp.svg">
+        </div>
+
+        <label for="address" class="font-weight-bold">Address:</label>
+        <div class="d-flex">
+          <textarea id="address" class="form-control" rows="3" [ngClass]="addressVal.length < 10 ? 'custom-shadow': 'no-shadow' "
+          name="address" [(ngModel)]="addressVal" required></textarea>
+          <img *ngIf="addressVal.length > 9" height="40px" class="img-responsive" src="assets/done-green-24dp.svg">
+        </div>
+
+        <label for="country" class="font-weight-bold">Country of origin:</label>
+        <div class="d-flex">
+          <input type="text" id="country" class="form-control" 
+          name="countryOfOrigin" #country="ngModel" [(ngModel)]="countryVal" required>
+        </div>
+        <p class="font-italic" *ngIf="country.dirty">Make sure to type the correct name of the country, otherwise your form won't get submitted!</p>
+        
+        <label for="email" class="font-weight-bold">Email:</label>
+        <div class="d-flex">
+          <input type="email" id="email" class="form-control" [ngClass]="email.valid ? 'no-shadow': 'custom-shadow' " 
+          name="email" #email="ngModel" [(ngModel)]="emailVal" required email>
+          <img *ngIf="email.valid" height="40px" class="img-responsive" src="assets/done-green-24dp.svg">
+        </div>
+
+        <label for="age" class="font-weight-bold">Age:</label>
+        <div class="d-flex">
+          <input type= "number" id="age" class="form-control" [ngClass]="ageVal > 19 && ageVal < 61 ? 'no-shadow': 'custom-shadow' "
+          name="age" [(ngModel)]="ageVal" required>
+          <img *ngIf="ageVal > 19 && ageVal < 61" height="40px" class="img-responsive" src="assets/done-green-24dp.svg">
+        </div>
+
+        <label for="hired" class="font-weight-bold">Hired:</label>
+        <div class="d-flex">
+          <select class="form-control" id="hired" name="hired" [(ngModel)]="hiredVal" #hr
+          [ngClass]="hiredVal == 'True' || hiredVal == 'False' ? 'no-shadow': 'custom-shadow' " required>
+            <option>True</option>
+            <option>False</option>
+          </select>
+          <img *ngIf="hiredVal == 'True' || hiredVal == 'False'" height="40px" class="img-responsive" src="assets/done-green-24dp.svg">
+        </div>
+        <button class="btn btn-outline-success rounded-pill mt-2" type="submit" [disabled]="!f.valid">Submit</button>
+        <button class="btn btn-outline-secondary rounded-pill ml-2 mt-2" type="button" (click)="onReset()">Reset</button>
+      </form>
+    </div>
+    <div class="col-sm-12 col-md-4">
+      <div class="card" *ngIf="lengthOfArray != 0">
+        <div class="card-header border-for-alert">
+          <p class="font-weight-bold">Could not submit the form because:</p>
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let er of errorTitles">{{er}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card" *ngIf="invalidCountryError != ''">
+        <div class="card-header border-for-alert">
+          <p class="font-weight-bold">Summary:</p>
+          {{invalidCountryError}}
+        </div>
+      </div>
+      <div class="card" *ngIf="formSubmitStatus">
+        <div class="card-header" style="background-color: greenyellow;">
+          <div class="d-flex">
+            Form submitted successfully!
+            <img height="40px" class="img-responsive" src="assets/done-green-24dp.svg">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
