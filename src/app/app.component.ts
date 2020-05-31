@@ -62,6 +62,9 @@ export class AppComponent implements OnInit {
         error => {
           this.errorTitles = [];
           this.restService.invalidCountryUpdate.next(error.error.message);
+          if(error.error.message == null){
+            this.restService.invalidCountryUpdate.next("Looks like the backend service is not running.");
+          }
           console.log(this.invalidCountryError);
           if(error.error.subErrors != null){
             for(let er of error.error.subErrors){

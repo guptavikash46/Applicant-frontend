@@ -8,16 +8,16 @@
       <form class="form-group" (ngSubmit)="onAddApplicant(f)" #f="ngForm">
         <label for="name" class="font-weight-bold">Name:</label>
         <div class="d-flex">
-          <input type="text" id="name" class="form-control" [ngClass]="nameVal.length < 6 ? 'custom-shadow': 'no-shadow'"
+          <input type="text" id="name" class="form-control" [ngClass]="nameVal.length < 5 ? 'custom-shadow': 'no-shadow'"
             name="name" [(ngModel)]="nameVal" required>
-            <img *ngIf="nameVal.length > 5" height="40px" class="img-responsive" src="assets/done-green-24dp.svg">
+            <img *ngIf="nameVal.length > 4" height="40px" class="img-responsive" src="assets/done-green-24dp.svg">
         </div>
 
         <label for="familyName" class="font-weight-bold">Family name:</label>
         <div class="d-flex">
-          <input type="text" id="familyName" class="form-control" [ngClass]="familyNameVal.length < 6 ? 'custom-shadow': 'no-shadow' " 
+          <input type="text" id="familyName" class="form-control" [ngClass]="familyNameVal.length < 5 ? 'custom-shadow': 'no-shadow' " 
           name="familyName" [(ngModel)]="familyNameVal" required>
-          <img *ngIf="familyNameVal.length > 5" height="40px" class="img-responsive" src="assets/done-green-24dp.svg">
+          <img *ngIf="familyNameVal.length > 4" height="40px" class="img-responsive" src="assets/done-green-24dp.svg">
         </div>
 
         <label for="address" class="font-weight-bold">Address:</label>
